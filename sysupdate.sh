@@ -6,18 +6,6 @@ echo "*                    UPDATING SYSTEM                      *"
 echo "*                                                         *"
 echo "***********************************************************"
 echo
-echo "-------------------- Creating a backup --------------------"
-echo
-if (test -d ~/"Google Drive"/backup/Scripts/); then
-    mv ~/"Google Drive"/backup/Scripts/ ~/"Google Drive"/backup/Scripts.old/
-fi
-cp -r ~/Scripts/ ~/"Google Drive"/backup/
-cp -r ~/.bash_aliases ~/"Google Drive"/backup/Scripts
-if (test -d ~/"Google Drive"/backup/Scripts.old/); then
-    rm -r ~/"Google Drive"/backup/Scripts.old/
-fi
-echo "Backup at /home/benhossi/Google Drive/backup/Scripts/."
-echo
 echo "-------------- Collecting packages to update --------------"
 echo
 sudo apt-fast update;
