@@ -53,11 +53,54 @@ do
     read install_package
     install_package=${install_package^^}
     if [ "$install_package" = "Y" ]; then
-        echo "Rename your requirements file to 'pip_requirements.txt' and store it on ~/Development."
-        echo "Hit [ENTER] when it is ready." && read
-        pip3 install -r ~/Development/pip_requirements.txt
         echo
-        echo "-> Packages installation complete."
+        echo "Rename your requirements file to 'pip_requirements.txt'."
+        custom_path=""
+        while true
+        do
+            if [ "$custom_path" = "" ]; then
+                echo
+                echo "Type the path to directory where the pip_requirements.txt is saved. "
+                read custom_path
+            fi
+            if [ -d "$custom_path" ]; then
+                file=$custom_path/pip_requirements.txt
+                if test -f "$file"; then
+                    ls -la $custom_path
+                    pip3 install -r $custom_path/pip_requirements.txt
+                    echo
+                    echo "-> Packages installation complete."
+                    break
+                else
+                    echo
+                    echo "File pip_requirements.txt not found in this directory."
+                    while true
+                    do
+                        echo
+                        echo "Do you want to inform another directory path to install from pip_requirements.txt? [Y/N]"
+                        read user_answer
+                        user_answer=${user_answer^^}
+                        if [ "$user_answer" = "Y" ]; then
+                            custom_path=''
+                            break
+                        elif [ "$user_answer" != "N" ]; then
+                            echo
+                            echo "Invalid option. Try again."
+                        else
+                            echo
+                            echo "Save file pip_requirements.txt on the directory '$custom_path'."
+                            echo "Press [ENTER] when it is ready."
+                            read
+                            break
+                        fi
+                    done
+                fi
+            else
+                echo
+                echo "Directory not found."
+                custom_path=''
+            fi
+        done
         break
     elif [ "$install_package" = "N" ]; then
         echo "-> No additional packages will be installed."
