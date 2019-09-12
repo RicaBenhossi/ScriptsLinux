@@ -66,7 +66,6 @@ do
             if [ -d "$custom_path" ]; then
                 file=$custom_path/pip_requirements.txt
                 if test -f "$file"; then
-                    ls -la $custom_path
                     pip3 install -r $custom_path/pip_requirements.txt
                     echo
                     echo "-> Packages installation complete."
