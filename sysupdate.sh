@@ -8,6 +8,7 @@ echo "***********************************************************"
 echo
 echo "-------------- Collecting packages to update --------------"
 echo
+cp ~/.bash_aliases ~/Scripts/
 sudo apt-fast update;
 # Copy list of apps that has updates
 sudo apt list --upgradable >>  ~/Scripts/packages_with_updates;

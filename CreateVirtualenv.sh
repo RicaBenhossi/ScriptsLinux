@@ -9,6 +9,7 @@ echo "   - The name will be by default venv_[name you want]"
 echo "   - It will be created on the currently directory"
 echo "   - It will be automatically activate"
 echo
+cp ~/.bash_aliases ~/Scripts/
 while true
 do
     echo "Enter the name for your Virtual Environment:"
@@ -35,7 +36,7 @@ fi
 echo
 echo "Sarting Virtual Environmet $venv_name"
 echo
-source $venv_name/bin/activate
+. $venv_name/bin/activate
 if [ $? -eq 0 ]; then
     echo "-> Virtual Environment $venv_name successfully started."
 else
