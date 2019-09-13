@@ -39,7 +39,7 @@ if [ "$have_updates" -gt 1 ]]; then
 
     # Check if firefox-trunk was updated and is open. If it's true, closes it and reopen.
     if (grep "firefox-trunk" ~/Scripts/packages_with_updates); then
-        Check if firefox-trunk is open.
+        # Check if firefox-trunk is open.
         if (pidof firefox-trunk > 0); then
             echo "Update available for Firefox"
             echo "Restarting to apply updates";
