@@ -20,7 +20,7 @@ do
         echo "Name is not valid."
     fi
 done
-venv_name="venv_$venv_user"
+venv_name="venv.$venv_user"
 echo
 echo "----------------------------------------------------------------------"
 echo "             Creating Virtual Environmet named $venv_name             "
@@ -47,10 +47,9 @@ echo "----------------------------------------------------------------------"
 echo "                 Installing default packages via pip                  "
 echo "----------------------------------------------------------------------"
 echo
-echo "Do you want to install packages from a pip requirements file [Y/N]?"
 while true
 do
-    read install_package
+    read -p "Do you want to install packages from a pip requirements file [Y/N]? " install_package
     install_package=${install_package^^}
     if [ "$install_package" = "Y" ]; then
         echo
@@ -60,8 +59,7 @@ do
         do
             if [ "$custom_path" = "" ]; then
                 echo
-                echo "Type the path to directory where the pip_requirements.txt is saved. "
-                read custom_path
+                read -e -p "Type the path to directory where the pip_requirements.txt is saved: " -i $HOME/ custom_path
             fi
             if [ -d "$custom_path" ]; then
                 file=$custom_path/pip_requirements.txt
@@ -76,8 +74,7 @@ do
                     while true
                     do
                         echo
-                        echo "Do you want to inform another directory path to install from pip_requirements.txt? [Y/N]"
-                        read user_answer
+                        read -p "Do you want to inform another directory path to install from pip_requirements.txt? [Y/N]: " user_answer
                         user_answer=${user_answer^^}
                         if [ "$user_answer" = "Y" ]; then
                             custom_path=''
@@ -109,6 +106,4 @@ do
     fi
 done
 echo
-echo "----------------------------------------------------------------------"
-echo "   Virtual Environmet $venv_name is set and ready to use. Enjoy it!   "
-echo "----------------------------------------------------------------------"
+echo "##### Virtual Environmet $venv_name is set and ready to use. Enjoy it! #####"
