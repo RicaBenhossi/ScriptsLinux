@@ -38,22 +38,22 @@ if [ "$have_updates" -gt 1 ]]; then
     fi
 
     # Check if firefox-trunk was updated and is open. If it's true, closes it and reopen.
-    # if (grep "firefox-trunk" ~/Scripts/packages_with_updates); then
-    #     # Check if firefox-trunk is open.
-    #     if (pidof firefox-trunk > 0); then
+    if (grep "firefox-trunk" ~/Scripts/packages_with_updates); then
+        # Check if firefox-trunk is open.
+        if (pidof firefox-trunk > 0); then
             echo "Update available for Firefox"
             echo "Restarting to apply updates";
             killall -9 -q firefox-trunk pidof;
             sleep 2
-            # sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox-trunk.desktop;
-            # sleep 2
-            # Reopen application
+            sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox-trunk.desktop;
+            sleep 2
+            Reopen application
             # DISPLAY=:0 nohup env MOZ_USE_XINPUT2=1 firefox-trunk &
             DISPLAY=:0 nohup env firefox-trunk &
             echo "Firefox update........ DONE"
             echo
-    #     fi
-    # fi
+        fi
+    fi
 
     if (grep "skypeforlinux" ~/Scripts/packages_with_updates); then
         # Check if code-insiders is open.
