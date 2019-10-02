@@ -44,8 +44,8 @@ if [ "$have_updates" -gt 1 ]]; then
             echo "Update available for Firefox"
             echo "Restarting to apply updates";
             killall -9 -q firefox-trunk pidof;
-            sleep 2
-            sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox-trunk.desktop;
+            # sleep 2
+            # sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox-trunk.desktop;
             sleep 2
             Reopen application
             # DISPLAY=:0 nohup env MOZ_USE_XINPUT2=1 firefox-trunk &
