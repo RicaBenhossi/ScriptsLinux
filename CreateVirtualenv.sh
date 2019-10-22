@@ -5,7 +5,7 @@ echo "*                Create Virtual Environment - Python                 *"
 echo "**********************************************************************"
 echo
 echo "Your Virtual Environment will be created as the follow:"
-echo "   - The name will be by default venv.[name you want]"
+echo "   - The name will be by default ve.[name you want]"
 echo "   - It will be created on the currently directory"
 echo "   - It will be automatically activate"
 echo
@@ -20,7 +20,7 @@ do
         echo "Name is not valid."
     fi
 done
-venv_name="venv.$venv_user"
+venv_name="ve.$venv_user"
 echo
 echo "----------------------------------------------------------------------"
 echo "             Creating Virtual Environmet named $venv_name             "
