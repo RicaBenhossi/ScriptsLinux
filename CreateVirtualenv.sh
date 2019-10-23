@@ -10,22 +10,28 @@ echo "   - It will be created on the currently directory"
 echo "   - It will be automatically activate"
 echo
 cp ~/.bash_aliases ~/Scripts/
-while true
-do
-    echo "Enter the name for your Virtual Environment:"
-    read venv_user
-    if [ $venv_user ]; then
-        break
-    else
-        echo "Name is not valid."
-    fi
-done
+if [ "$1" = "" ]; then
+    while true
+    do
+        echo "Enter the name for your Virtual Environment:"
+        read venv_user
+        if [ $venv_user ]; then
+            break
+        else
+            echo "Name is not valid."
+        fi
+    done
+else
+    echo "Name already passed as parameter: $1"
+    venv_user="$1"
+fi
 venv_name="ve.$venv_user"
 echo
 echo "----------------------------------------------------------------------"
 echo "             Creating Virtual Environmet named $venv_name             "
 echo "----------------------------------------------------------------------"
 echo
+sleep 2s
 virtualenv --python=python3.7 "$venv_name"
 if [ $? -eq 0 ]; then
     echo " -> Virtual Environment $venv_name successfully created."
