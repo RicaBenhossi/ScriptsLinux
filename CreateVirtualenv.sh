@@ -57,9 +57,15 @@ do
         custom_path=""
         while true
         do
-            if [ "$custom_path" = "" ]; then
-                echo
-                read -e -p "Type the path to directory where the pip_requirements.txt is saved: " -i $HOME/ custom_path
+            pip_file=pip_requirements.txt
+            if test -f "$pip_file" ; then
+                echo "Pip requirements file found. Start installing packages from pip_requirements.txt."
+                custom_path=$(pwd)
+            else
+                if [ "$custom_path" = "" ]; then
+                    echo
+                    read -e -p "Type the path to directory where the pip_requirements.txt is saved: " -i $HOME/ custom_path
+                fi
             fi
             if [ -d "$custom_path" ]; then
                 file=$custom_path/pip_requirements.txt
