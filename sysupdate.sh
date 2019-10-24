@@ -46,7 +46,7 @@ if [ "$have_updates" -gt 1 ]]; then
             killall -9 -q firefox-trunk pidof;
             # sleep 2
             # sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox-trunk.desktop;
-            sleep 2
+            sleep 2s
             Reopen application
             # DISPLAY=:0 nohup env MOZ_USE_XINPUT2=1 firefox-trunk &
             DISPLAY=:0 nohup env firefox-trunk &
@@ -87,6 +87,19 @@ sudo rm -f ~/nohup.out;
 sudo rm -f nohup.out;
 echo "DONE"
 echo
+echo "-------------------- BACKUPING .CONFG ---------------------"
+echo
+echo "Compacting .Config folder"
+cp -r ~/.config/ .
+zip -r -q ricabenhossi_config.zip .config/
+echo
+sleep 1s
+echo "Moving zip file to cloud"
+mv ricabenhossi_config.zip ~/GoogleDrive/backup/ && rm -r .config/
+echo
+sleep 1s
+echo "Backup Done."
+echo
+sleep 2s
 echo "--------------------- Update finished ---------------------"
 echo
-
