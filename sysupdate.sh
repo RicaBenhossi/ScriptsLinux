@@ -87,18 +87,7 @@ sudo rm -f ~/nohup.out;
 sudo rm -f nohup.out;
 echo "DONE"
 echo
-echo "-------------------- BACKUPING .CONFG ---------------------"
-echo
-echo "Compacting .Config folder"
-cp -r ~/.config/ .
-zip -r -q ricabenhossi_config.zip .config/
-echo
-sleep 1s
-echo "Moving zip file to cloud"
-mv ricabenhossi_config.zip ~/GoogleDrive/backup/ && rm -r .config/
-echo
-sleep 1s
-echo "Backup Done."
+. ~/Scripts/backup_config.sh
 echo
 sleep 2s
 echo "--------------------- Update finished ---------------------"
