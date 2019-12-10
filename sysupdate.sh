@@ -47,7 +47,7 @@ if [ "$have_updates" -gt 1 ]]; then
             # sleep 2
             # sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox-trunk.desktop;
             sleep 2s
-            Reopen application
+            # Reopen application
             # DISPLAY=:0 nohup env MOZ_USE_XINPUT2=1 firefox-trunk &
             DISPLAY=:0 nohup env firefox-trunk &
             echo "Firefox update........ DONE"
