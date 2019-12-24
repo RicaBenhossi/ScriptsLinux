@@ -15,7 +15,7 @@ sudo apt list --upgradable >>  ~/Scripts/packages_with_updates;
 echo "-------------------- Performing update --------------------"
 echo
 have_updates=$(wc -l < ~/Scripts/packages_with_updates);
-if [ "$have_updates" -gt 1 ]]; then
+if [ "$have_updates" -gt 1 ]; then
     sudo apt-fast dist-upgrade -y;
 fi
 
@@ -26,7 +26,7 @@ sudo apt-fast autoremove -y;
 echo
 
 # Check if code-indiders was updated and is open. If it's true, closes it and reopen.
-if [ "$have_updates" -gt 1 ]]; then
+if [ "$have_updates" -gt 1 ]; then
     echo "---------------- Checking apps to restart -----------------"
     echo
     if (grep "code-insiders" ~/Scripts/packages_with_updates); then
