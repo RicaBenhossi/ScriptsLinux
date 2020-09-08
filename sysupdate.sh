@@ -44,11 +44,7 @@ if [ "$have_updates" -gt 1 ]]; then
             echo "Update available for Firefox"
             echo "Restarting to apply updates";
             pkill firefox-trunk -f;
-            # sleep 2
-            # sudo sed -i "s|Exec=|Exec=env MOZ_USE_XINPUT2=1 |g" /usr/share/applications/firefox-trunk.desktop;
             sleep 2s
-            # Reopen application
-            # DISPLAY=:0 nohup env MOZ_USE_XINPUT2=1 firefox-trunk &
             DISPLAY=:0 nohup env firefox-trunk &
             echo "Firefox update........ DONE"
             echo
@@ -86,8 +82,6 @@ echo "Removing nohup.out"
 sudo rm -f ~/nohup.out;
 sudo rm -f nohup.out;
 echo "DONE"
-echo
-. ~/Scripts/backup_config.sh
 echo
 sleep 2s
 echo "--------------------- Update finished ---------------------"
