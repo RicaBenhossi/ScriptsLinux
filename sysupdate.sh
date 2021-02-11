@@ -25,6 +25,11 @@ sudo apt-fast clean;
 sudo apt-fast autoremove -y;
 echo
 
+echo "---------------- Updating Flatpak packages ----------------"
+echo
+flatpak update
+echo
+
 # Check if code-indiders was updated and is open. If it's true, closes it and reopen.
 if [ "$have_updates" -gt 1 ]; then
     echo "---------------- Checking apps to restart -----------------"
