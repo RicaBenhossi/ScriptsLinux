@@ -27,7 +27,7 @@ echo
 
 echo "---------------- Updating Flatpak packages ----------------"
 echo
-flatpak update
+flatpak update -y
 echo
 
 # Check if code-indiders was updated and is open. If it's true, closes it and reopen.
