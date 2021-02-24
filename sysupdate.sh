@@ -1,4 +1,5 @@
-# !/bin/bash
+# !/bin/zsh
+
 echo
 echo "***********************************************************"
 echo "*                                                         *"
@@ -8,18 +9,25 @@ echo "***********************************************************"
 echo
 echo "-------------- Collecting packages to update --------------"
 echo
-cp ~/.bash_aliases ~/Scripts/
+cp ~/.sh_aliases ~/Scripts/
 sudo apt-fast update;
 # Copy list of apps that has updates
-sudo apt list --upgradable >>  ~/Scripts/packages_with_updates;
+sudo apt list --upgradable | sed '1d' >> ~/Scripts/packages_with_updates
+have_updates=$(wc -l < ~/Scripts/packages_with_updates);
+if [ "$have_updates" -gt 1 ]; then
+    echo "-------------- Packages that will be updated --------------"
+    echo
+    cat ~/Scripts/packages_with_updates
+    echo
+fi
+
 echo "-------------------- Performing update --------------------"
 echo
-have_updates=$(wc -l < ~/Scripts/packages_with_updates);
 if [ "$have_updates" -gt 1 ]; then
     sudo apt-fast dist-upgrade -y;
 fi
 
-# Clean up the system
+#Clean up system
 sudo apt-fast autoclean;
 sudo apt-fast clean;
 sudo apt-fast autoremove -y;
