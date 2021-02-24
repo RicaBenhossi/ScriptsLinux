@@ -7,7 +7,7 @@ echo "*                    UPDATING SYSTEM                      *"
 echo "*                                                         *"
 echo "***********************************************************"
 echo
-echo "-------------- Collecting packages to update --------------"
+echo "============== Collecting packages to update =============="
 echo
 cp ~/.sh_aliases ~/Scripts/
 sudo apt-fast update;
@@ -21,7 +21,7 @@ if [ "$have_updates" -gt 1 ]; then
     echo
 fi
 
-echo "-------------------- Performing update --------------------"
+echo "==================== Performing update ===================="
 echo
 if [ "$have_updates" -gt 1 ]; then
     sudo apt-fast dist-upgrade -y;
@@ -33,14 +33,14 @@ sudo apt-fast clean;
 sudo apt-fast autoremove -y;
 echo
 
-echo "---------------- Updating Flatpak packages ----------------"
+echo "================ Updating Flatpak packages ================"
 echo
 flatpak update -y
 echo
 
 # Check if code-indiders was updated and is open. If it's true, closes it and reopen.
 if [ "$have_updates" -gt 1 ]; then
-    echo "---------------- Checking apps to restart -----------------"
+    echo "================ Checking apps to restart ================="
     echo
     if (grep "code-insiders" ~/Scripts/packages_with_updates); then
         # Check if code-insiders is open.
@@ -82,7 +82,7 @@ if [ "$have_updates" -gt 1 ]; then
     echo
 fi
 # Removing packages_wit_updates
-echo "--------------------- Cleanning files ---------------------"
+echo "===================== Cleanning files ====================="
 echo
 echo "Removing packages_with_updates"
 sudo rm -f ~/Scripts/packages_with_updates;
@@ -100,5 +100,5 @@ sudo rm -f nohup.out;
 echo "DONE"
 echo
 sleep 2s
-echo "--------------------- Update finished ---------------------"
+echo "===================== Update finished ====================="
 echo
