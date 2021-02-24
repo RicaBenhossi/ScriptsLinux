@@ -21,13 +21,16 @@ if [ "$have_updates" -gt 1 ]; then
     echo
 fi
 
-echo "==================== Performing update ===================="
-echo
 if [ "$have_updates" -gt 1 ]; then
+    echo "==================== Performing update ===================="
+    echo
     sudo apt-fast dist-upgrade -y;
+    echo
 fi
 
 #Clean up system
+echo "==================== Cleaning up System ==================="
+echo
 sudo apt-fast autoclean;
 sudo apt-fast clean;
 sudo apt-fast autoremove -y;
