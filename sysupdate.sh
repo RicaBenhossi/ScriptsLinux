@@ -9,19 +9,16 @@ echo "***********************************************************"
 echo
 echo "============== Collecting packages to update =============="
 echo
-cp ~/.sh_aliases ~/Scripts/
 sudo apt-fast update;
 # Copy list of apps that has updates
 sudo apt list --upgradable | sed '1d' >> ~/Scripts/packages_with_updates
-have_updates=$(wc -l < ~/Scripts/packages_with_updates);
-if [ "$have_updates" -gt 1 ]; then
-    echo "-------------- Packages that will be updated --------------"
-    echo
-    cat ~/Scripts/packages_with_updates
-    echo
+if [ -s ~/Scripts/packages_with_updates ]; then
+    have_updates=true
+else
+    have_updates=false
 fi
 
-if [ "$have_updates" -gt 1 ]; then
+if [ "$have_updates" = true ]; then
     echo "==================== Performing update ===================="
     echo
     sudo apt-fast dist-upgrade -y;
@@ -42,7 +39,7 @@ flatpak update -y
 echo
 
 # Check if code-indiders was updated and is open. If it's true, closes it and reopen.
-if [ "$have_updates" -gt 1 ]; then
+if [ "$have_updates" = true ]; then
     echo "================ Checking apps to restart ================="
     echo
     if (grep "code-insiders" ~/Scripts/packages_with_updates); then
@@ -82,6 +79,12 @@ if [ "$have_updates" -gt 1 ]; then
         fi
     fi
     echo "Checking apps to restart complete..."
+    echo
+fi
+if [ "$have_updates" = true ]; then
+    echo "===================== Packages updated ===================="
+    echo
+    cat ~/Scripts/packages_with_updates
     echo
 fi
 # Removing packages_wit_updates
