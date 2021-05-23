@@ -17,10 +17,8 @@ if [ -s ~/Scripts/packages_with_updates ]; then
 else
     have_updates=false
 fi
-
 if [ "$have_updates" = true ]; then
     echo "==================== Performing update ===================="
-    echo
     sudo apt-fast dist-upgrade -y;
     echo
 fi
